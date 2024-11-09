@@ -20,7 +20,7 @@
         <ul>
           <img src="https://st4.depositphotos.com/1049680/20108/i/450/depositphotos_201087534-stock-photo-beautiful-feline-cat-eating-metal.jpg" width="250" height="150" alt="Gato 1" class="foto-com-borda">
           <li>Alimentação: Os gatos precisam de uma dieta equilibrada e nutritiva. É importante escolher uma ração de alta qualidade e fornecer água fresca em todo momento.</li>
-          <li>Abrigo: Os gatos precisam de um lugar seguro e confortável para dormir. É importante fornecer uma cama ou um local aconchegante para que eles possam se sentir seguros.</li>
+          <li>Abrigo: Os gatos precisam de um lugar seguro e confortável para dormir. É importante fornecer uma cama ou um local aconchegante para que eles possam se sentir seguros. Para isso é importe a telagem, impedindo o acesso a rua.</li>
           <li>Higiene: Os gatos precisam de um ambiente limpo e higiênico. É importante limpar regularmente a caixa de areia e fornecer um local para que eles possam se limpar.</li>
         </ul>
 
