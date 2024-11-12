@@ -29,8 +29,11 @@
           <textarea id="interesse" name="interesse" rows="4" required></textarea><br>
 
           <button type="submit">Enviar Interesse</button><br>
-        </form>
-      </div>
+
+          <form action="recebe_dados.php" method="post">
+
+          </form>
+      </div>*
     </section>
   </main>
 
