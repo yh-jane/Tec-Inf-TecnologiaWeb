@@ -24,6 +24,19 @@
           console.error("Erro:", error);
         });
     }
+
+    // Função para formatar o telefone enquanto o usuário digita
+    function formatarTelefone(event) {
+      let telefone = event.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+      if (telefone.length <= 2) {
+        telefone = `(${telefone}`;
+      } else if (telefone.length <= 7) {
+        telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+      } else {
+        telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+      }
+      event.target.value = telefone;
+    }
   </script>
 </head>
 
@@ -42,7 +55,8 @@
           <input type="email" id="email" name="email" required><br>
 
           <label for="telefone">Telefone:</label><br>
-          <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{5}-\d{4}" required><br>
+          <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{5}-\d{4}" required
+            oninput="formatarTelefone(event)"><br>
 
           <label for="interesse">Em qual dos nossos gatos você tem interesse?</label><br>
           <textarea id="interesse" name="interesse" rows="4" required></textarea><br>
