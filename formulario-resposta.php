@@ -1,11 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  var_dump($_POST);  // Adicione esta linha para ver os dados do formulário
-
-  $nome = htmlspecialchars($_POST['nome']);
-  $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-  $telefone = htmlspecialchars($_POST['telefone']);
-  $interesse = htmlspecialchars($_POST['interesse']);
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $telefone = $_POST['telefone'];
+  $interesse = $_POST['interesse'];
 
   $dados = [
     "nome" => $nome,
@@ -14,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     "interesse" => $interesse,
   ];
 
-  $jsonPath = __DIR__ . '/dados_interesse.json';
+  $jsonPath = 'dados_interesse.json';
   $jsonData = [];
 
   if (file_exists($jsonPath)) {
@@ -22,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jsonData = json_decode($jsonContents, true);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
-      echo "<p>Erro ao processar o arquivo JSON existente: " . json_last_error_msg() . "</p>";
+      echo "Erro ao processar o arquivo JSON existente: " . json_last_error_msg();
       exit();
     }
   }
@@ -30,11 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $jsonData[] = $dados;
 
   if (file_put_contents($jsonPath, json_encode($jsonData, JSON_PRETTY_PRINT))) {
-    echo "<p>Obrigado pelo interesse! Seus dados foram enviados com sucesso.</p>";
+    echo "Obrigado pelo interesse! Seus dados foram enviados com sucesso.";
   } else {
-    echo "<p>Erro ao salvar os dados. Verifique as permissões do arquivo.</p>";
+    echo "Erro ao salvar os dados. Verifique as permissões do arquivo.";
   }
 } else {
-  echo "<p>Erro ao enviar os dados. Por favor, tente novamente.</p>";
+  echo "Erro ao enviar os dados. Por favor, tente novamente.";
 }
 ?>

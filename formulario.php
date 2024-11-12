@@ -7,17 +7,22 @@
   <title>Adote um Felino</title>
   <link rel="stylesheet" href="styles.css">
   <script>
-    function formatPhone(input) {
-      const value = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-      const length = value.length;
+    function enviarFormulario(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+      const formData = new FormData(document.getElementById("formInteresse"));
 
-      if (length < 3) {
-        input.value = value;
-      } else if (length < 7) {
-        input.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-      } else {
-        input.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
-      }
+      fetch("formulario-resposta.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("mensagemResposta").innerHTML = data;
+        })
+        .catch((error) => {
+          document.getElementById("mensagemResposta").innerHTML = "Erro ao enviar o formulário.";
+          console.error("Erro:", error);
+        });
     }
   </script>
 </head>
@@ -29,7 +34,7 @@
     <section id="interesse">
       <div class="container">
         <h2>Formulário de Interesse</h2>
-        <form action="formulario-resposta.php" method="post">
+        <form id="formInteresse" onsubmit="enviarFormulario(event)">
           <label for="nome">Nome:</label><br>
           <input type="text" id="nome" name="nome" required><br>
 
@@ -37,13 +42,16 @@
           <input type="email" id="email" name="email" required><br>
 
           <label for="telefone">Telefone:</label><br>
-          <input type="tel" id="telefone" name="telefone" oninput="formatPhone(this)" maxlength="15" required><br>
+          <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{5}-\d{4}" required><br>
 
           <label for="interesse">Em qual dos nossos gatos você tem interesse?</label><br>
           <textarea id="interesse" name="interesse" rows="4" required></textarea><br>
 
           <button type="submit">Enviar Interesse</button><br>
         </form>
+
+        <!-- Contêiner para exibir a mensagem de resposta -->
+        <div id="mensagemResposta"></div>
       </div>
     </section>
   </main>
